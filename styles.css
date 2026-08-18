@@ -1,0 +1,209 @@
+/* 窗簾銷售 Pilot 追蹤器 (DEMO) — clean professional, mobile-first, zero deps */
+
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #f4f6f8;
+  --panel: #ffffff;
+  --ink: #16212b;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --accent: #1d4ed8;
+  --accent-soft: #e8effc;
+  --ok: #1f8a4c;
+  --warn: #8a6d1a;
+  --warn-bg: #fdf3d7;
+  --warn-line: #ecd98a;
+  --danger: #d64545;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.app { max-width: 640px; margin: 0 auto; padding: 20px 16px 48px; }
+
+.app-head { margin-bottom: 16px; }
+.app-head h1 { margin: 0 0 4px; font-size: 24px; letter-spacing: 0.02em; }
+.sub { margin: 0; font-size: 13px; color: var(--muted); }
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--warn);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-line);
+  border-radius: 999px;
+}
+
+/* tabs */
+.tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+.tab {
+  flex: 1;
+  padding: 11px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.tab.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+}
+.panel h2 { margin: 0 0 12px; font-size: 15px; letter-spacing: 0.05em; }
+.mt { margin-top: 20px; }
+.hint { margin: 0 0 12px; font-size: 12px; color: var(--muted); }
+.empty { color: var(--muted); font-size: 14px; text-align: center; padding: 14px 0; margin: 0; }
+
+/* funnel + kpis */
+.funnel-row {
+  display: grid;
+  grid-template-columns: 96px 1fr 28px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+  font-size: 13px;
+}
+.funnel-label { color: var(--muted); }
+.funnel-bar-wrap { background: var(--line); border-radius: 4px; height: 10px; overflow: hidden; }
+.funnel-bar { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+.funnel-val { text-align: right; font-variant-numeric: tabular-nums; }
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+.kpi {
+  padding: 12px;
+  background: var(--accent-soft);
+  border-radius: 8px;
+  text-align: center;
+}
+.kpi-label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.kpi strong { font-size: 16px; color: var(--accent); }
+
+/* forms */
+.grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid-form .full { grid-column: 1 / -1; }
+.field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 11px;
+  font-size: 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+}
+.field input:focus, .field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+button { font: inherit; border: 0; border-radius: 8px; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.primary {
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+}
+button.primary:hover { background: #1a43b8; }
+button.secondary {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid #c7d8f7;
+}
+button.secondary:hover { background: #dbe7fb; }
+button.danger {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--danger);
+  background: #fdeeee;
+  border: 1px solid #f3c6c6;
+}
+
+/* lead list */
+#lead-list { list-style: none; margin: 0; padding: 0; }
+.lead { padding: 12px 0; border-top: 1px solid var(--line); }
+.lead-head { display: flex; align-items: center; gap: 8px; }
+.lead-head strong { font-size: 15px; }
+.status-chip {
+  padding: 1px 8px;
+  font-size: 11px;
+  border-radius: 999px;
+  background: var(--line);
+  color: var(--muted);
+}
+.status-chip.won { background: #e7f6ee; color: var(--ok); }
+.status-chip.lost { background: #fdeeee; color: var(--danger); }
+.status-chip.quoted { background: var(--accent-soft); color: var(--accent); }
+.status-chip.approved { background: #e7f6ee; color: var(--ok); }
+
+.lead-meta { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--ink); }
+.lead-action { margin-top: 8px; display: flex; align-items: center; gap: 10px; }
+.lead-hint { font-size: 12px; color: var(--muted); }
+
+.unknown-chip {
+  padding: 1px 8px;
+  font-size: 11px;
+  color: var(--warn);
+  background: var(--warn-bg);
+  border: 1px dashed var(--warn-line);
+  border-radius: 999px;
+}
+
+/* quotes */
+#quote-list { list-style: none; margin: 0; padding: 0; }
+.quote { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); }
+.quote-head { display: flex; align-items: center; gap: 8px; }
+.quote-desc { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+.quote-right { text-align: right; flex: none; }
+.quote-right strong { font-size: 15px; font-variant-numeric: tabular-nums; }
+.quote-right small { display: block; margin-top: 3px; font-size: 11px; color: var(--muted); }
+
+.quote-actions { margin-top: 12px; }
+.notice { margin: 0 0 10px; padding: 8px 12px; font-size: 13px; color: var(--ok); background: #e7f6ee; border: 1px solid #bfe6cf; border-radius: 8px; }
+.notice.error { color: var(--danger); background: #fdeeee; border-color: #f3c6c6; }
+
+/* footer */
+.app-foot { text-align: center; margin-top: 14px; }
+.app-foot button { margin: 4px; }
+.app-foot p { color: var(--muted); font-size: 12px; margin: 10px 0 0; }
+
+.storage-warning {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--warn);
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-line);
+  border-radius: 8px;
+}
+
+@media (max-width: 480px) {
+  .grid-form { grid-template-columns: 1fr; }
+  .funnel-row { grid-template-columns: 84px 1fr 24px; }
+}

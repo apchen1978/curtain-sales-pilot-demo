@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>窗簾銷售 Pilot 追蹤器 — DEMO</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-head">
+      <h1>窗簾銷售 Pilot 追蹤器</h1>
+      <p class="sub">AI-native 商業系統示範 · <span class="badge">DEMO / SIMULATION — 全部為測試資料</span></p>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="檢視">
+      <button class="tab active" data-tab="dashboard" role="tab" aria-selected="true">總覽</button>
+      <button class="tab" data-tab="leads" role="tab" aria-selected="false">客戶（Leads）</button>
+      <button class="tab" data-tab="quotes" role="tab" aria-selected="false">報價（Quotes）</button>
+    </nav>
+
+    <!-- DASHBOARD -->
+    <section class="panel" id="tab-dashboard" role="tabpanel">
+      <h2>銷售漏斗（本月）</h2>
+      <div id="funnel"></div>
+      <div class="kpis">
+        <div class="kpi"><span class="kpi-label">本月成交金額</span><strong id="kpi-won">NT$0</strong></div>
+        <div class="kpi"><span class="kpi-label">進行中案件</span><strong id="kpi-active">0</strong></div>
+        <div class="kpi"><span class="kpi-label">待報價</span><strong id="kpi-quotable">0</strong></div>
+      </div>
+    </section>
+
+    <!-- LEADS -->
+    <section class="panel" id="tab-leads" role="tabpanel" hidden>
+      <h2>新增客戶（測試）</h2>
+      <form id="lead-form" class="grid-form">
+        <div class="field"><label for="l-name">客戶代稱 *</label><input id="l-name" maxlength="20" placeholder="例如：陳小姐" required></div>
+        <div class="field"><label for="l-area">地區</label><input id="l-area" maxlength="20" placeholder="例如：新莊"></div>
+        <div class="field"><label for="l-source">來源</label>
+          <select id="l-source"><option>LINE</option><option>電話</option><option>店面</option><option>轉介</option><option>其他</option></select>
+        </div>
+        <div class="field"><label for="l-budget">預算區間（NT$）</label><input id="l-budget" inputmode="numeric" placeholder="例如：60000-80000"></div>
+        <div class="field full"><label for="l-note">需求備註</label><input id="l-note" maxlength="120" placeholder="例如：三房窗簾，主臥高度遮光"></div>
+        <button type="submit" class="primary full">新增客戶</button>
+      </form>
+      <h2 class="mt">客戶清單</h2>
+      <p class="hint">規則：24h 內首次聯繫 · 未知值標示 <span class="unknown-chip">UNKNOWN</span>（不補全、不捏造）· 需丈量才可報價</p>
+      <ul id="lead-list"></ul>
+      <p id="list-empty-leads" class="empty" hidden>尚無客戶——點「載入測試資料」或新增一筆。</p>
+    </section>
+
+    <!-- QUOTES -->
+    <section class="panel" id="tab-quotes" role="tabpanel" hidden>
+      <h2>報價（版本化 + Owner 核准）</h2>
+      <p class="hint">規則：報價需版本化 · 折扣/正式報價需 <b>owner 核准</b> · 未核准不視為已報價</p>
+      <div class="field">
+        <label for="q-lead">選擇客戶</label>
+        <select id="q-lead"></select>
+      </div>
+      <form id="quote-form" class="grid-form">
+        <div class="field"><label for="q-desc">項目說明 *</label><input id="q-desc" maxlength="60" placeholder="例如：客廳三窗 + 主臥遮光布" required></div>
+        <div class="field"><label for="q-amount">金額（NT$）*</label><input id="q-amount" type="number" min="1" step="1" inputmode="numeric" required></div>
+        <button type="submit" class="primary">建立報價（自動版本 v+1）</button>
+      </form>
+      <div class="quote-actions">
+        <button id="q-approve" class="secondary" type="button">Owner 核准最新報價（DEMO）</button>
+      </div>
+      <h3 class="mt">報價歷史</h3>
+      <ul id="quote-list"></ul>
+    </section>
+
+    <footer class="app-foot">
+      <button id="btn-seed" type="button">載入測試資料 (DEMO)</button>
+      <button id="btn-clear" class="danger" type="button">清除全部測試資料</button>
+      <p>無後端 · 無登入 · 資料僅存於本瀏覽器 localStorage · 非真實客戶資料</p>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
