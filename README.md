@@ -3,6 +3,15 @@
 > **AI-native business-system demo** · vanilla HTML/CSS/JS · zero dependencies · localStorage only
 > All data is **DEMO / SIMULATION** — no real customers, no real revenue, no backend.
 
+## ▶️ Live demo
+
+**https://apchen1978.github.io/curtain-sales-pilot-demo/**
+
+![Dashboard](screenshot-dashboard.png)
+
+Load 測試資料 (DEMO) and drive the pipeline yourself: advance leads, create versioned quotes,
+hit **Owner 核准**, and watch the approval gate unlock "已報價".
+
 A runnable web demo of the core of a **soft-furnishing (窗簾) sales-pilot tracker** — a system I
 originally built with AI agents for a real business workflow, then re-implemented here as a
 dependency-free, clone-and-run showcase.
