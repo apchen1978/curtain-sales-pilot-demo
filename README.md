@@ -1,4 +1,4 @@
-# Curtain Sales Pilot Tracker — DEMO
+# Sales Pilot Tracker — DEMO
 
 > **A Paul + AI collaboration prototype** · vanilla HTML/CSS/JS · zero dependencies · localStorage only
 > All data is **DEMO / SIMULATION** — no real customers, no real revenue, no backend.
@@ -25,7 +25,7 @@ toy CRUD app:
    `UNKNOWN`, **never fabricated or defaulted**. A sales system that invents data is worse than
    one that says "we don't know".
 3. **Quote versioning** — every quote is a version (v1, v2, …); a quote only counts as "quoted"
-   after **owner approval** (a human gate). Approval ≠ execution; the UI enforces the order.
+   after **decision-maker approval** (a human gate). Approval ≠ execution; the UI enforces the order.
 4. **Actionable next step on every lead** — the system tells the operator what to do next
    ("24h 內首次聯繫", "安排丈量", "等待負責人核准報價").
 

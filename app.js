@@ -1,8 +1,8 @@
-// app.js — 窗簾銷售 Pilot 追蹤器 (DEMO) · vanilla JS, zero deps, localStorage only.
+// app.js — 銷售 Pilot 追蹤器 (DEMO) · vanilla JS, zero deps, localStorage only.
 // Demonstrates representative business rules of a real sales-pilot tracker:
 //   - Lead pipeline: new → contacted → qualified → measurement_booked → quoted → won|lost
 //   - UNKNOWN discipline: missing facts are shown as UNKNOWN, never fabricated
-//   - Quote versioning: every quote is a version; owner approval required before counted as "quoted"
+//   - Quote versioning: every quote is a version; decision-maker approval required before counted as "quoted"
 // All data is DEMO / SIMULATION. No real customers, no backend.
 
 "use strict";
@@ -101,7 +101,7 @@ function quoteVersionCount(leadId) {
 
 // ---------- seed (clearly fake) ----------
 const SEED_LEADS = [
-  { name: "陳小姐", area: "新莊", source: "LINE", budget: "60000-80000", note: "三房窗簾；主臥高度遮光", status: "new" },
+  { name: "陳小姐", area: "新莊", source: "LINE", budget: "60000-80000", note: "三房住宅；主臥有特殊需求", status: "new" },
   { name: "李先生", area: "板橋", source: "電話", budget: "", note: "客廳落地窗兩扇", status: "contacted" },
   { name: "王太太", area: "三重", source: "店面", budget: "30000-50000", note: "兩間臥室；一般遮光", status: "qualified" },
   { name: "張先生", area: "蘆洲", source: "轉介", budget: "100000-150000", note: "全室；需要樣布", status: "measurement_booked" },
@@ -355,7 +355,7 @@ function initForms() {
     saveState();
     renderAll();
     $("#quote-form").reset();
-    // keep the same lead selected so the Owner-approval step flows naturally
+    // keep the same lead selected so the approval step flows naturally
     if (leadId && [...$("#q-lead").options].some((o) => o.value === leadId)) $("#q-lead").value = leadId;
     showNotice(`已建立報價 v${quoteVersionCount(leadId)}（草稿）——等待負責人核准。`);
   });
