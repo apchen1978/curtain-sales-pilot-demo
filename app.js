@@ -83,7 +83,7 @@ function canAdvance(lead) {
 }
 function nextActionLabel(lead) {
   if (lead.status === "won" || lead.status === "lost") return "";
-  if (NEXT[lead.status] === "quoted") return hasApprovedQuote(lead.id) ? "下一步：成交" : "等待 Owner 核准報價";
+  if (NEXT[lead.status] === "quoted") return hasApprovedQuote(lead.id) ? "下一步：成交" : "等待負責人核准報價";
   const map = {
     new: "24h 內首次聯繫",
     contacted: "確認資格",
@@ -108,7 +108,7 @@ const SEED_LEADS = [
   { name: "林小姐", area: "中和", source: "LINE", budget: "80000-120000", note: "三房兩廳", status: "quoted" },
 ];
 const SEED_QUOTES = [
-  { leadName: "林小姐", version: 1, desc: "客廳三窗 + 主臥遮光布", amount: 96800, status: "approved", approvedBy: "owner (demo)" },
+  { leadName: "林小姐", version: 1, desc: "客廳三窗 + 主臥遮光布", amount: 96800, status: "approved", approvedBy: "負責人（示範）" },
 ];
 
 function seedDemo() {
@@ -264,7 +264,7 @@ function renderQuotes() {
   if (sorted.length === 0) {
     const p = document.createElement("p");
     p.className = "empty";
-    p.textContent = "尚無報價。先建立報價，再讓 Owner 核准（DEMO）。";
+    p.textContent = "尚無報價。先建立報價，再讓負責人核准（示範）。";
     list.append(p);
     return;
   }
@@ -292,7 +292,7 @@ function renderQuotes() {
     right.append(amt);
     if (q.status === "approved") {
       const by = document.createElement("small");
-      by.textContent = `核准：${q.approvedBy || "owner"} · ${q.createdAt}`;
+      by.textContent = `核准：${q.approvedBy || "負責人"} · ${q.createdAt}`;
       right.append(by);
     }
     li.append(left, right);
@@ -357,7 +357,7 @@ function initForms() {
     $("#quote-form").reset();
     // keep the same lead selected so the Owner-approval step flows naturally
     if (leadId && [...$("#q-lead").options].some((o) => o.value === leadId)) $("#q-lead").value = leadId;
-    showNotice(`已建立報價 v${quoteVersionCount(leadId)}（草稿）——等待 Owner 核准。`);
+    showNotice(`已建立報價 v${quoteVersionCount(leadId)}（草稿）——等待負責人核准。`);
   });
 
   $("#q-approve").addEventListener("click", () => {
@@ -370,7 +370,7 @@ function initForms() {
       return;
     }
     latest.status = "approved";
-    latest.approvedBy = "owner (demo)";
+    latest.approvedBy = "負責人（示範）";
     // approved quote unlocks the quoted status on the lead
     const lead = leads.find((l) => l.id === leadId);
     if (lead && lead.status === "measurement_booked") lead.status = "quoted";
