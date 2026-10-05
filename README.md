@@ -10,7 +10,7 @@
 ![Dashboard](screenshot-dashboard.png)
 
 Load 測試資料 (DEMO) and drive the pipeline yourself: advance leads, create versioned quotes,
-hit **Owner 核准**, and watch the approval gate unlock "已報價".
+hit **負責人核准**, and watch the approval gate unlock "已報價".
 
 A runnable web demo of the core of a **soft-furnishing (窗簾) sales-pilot tracker** — a system I
 originally built with AI agents for a real business workflow, then re-implemented here as a
@@ -28,7 +28,7 @@ for a real business — not a toy CRUD app:
 3. **Quote versioning** — every quote is a version (v1, v2, …); a quote only counts as "quoted"
    after **owner approval** (a human gate). Approval ≠ execution; the UI enforces the order.
 4. **Actionable next step on every lead** — the system tells the operator what to do next
-   ("24h 內首次聯繫", "安排丈量", "等待 Owner 核准報價").
+   ("24h 內首次聯繫", "安排丈量", "等待負責人核准報價").
 
 These rules came from real operating conventions (24h first contact, measurement-before-quoting,
 approval-before-price). A portfolio repo should show *judgment*, not just code.
@@ -54,7 +54,7 @@ python -m http.server 8080     # then open http://localhost:8080
 ```
 
 Load 測試資料 (DEMO) to seed five fake leads + one approved quote, then drive the pipeline:
-advance a lead → create quotes → **Owner 核准** → watch it unlock "已報價" → 標記成交.
+advance a lead → create quotes → **負責人核准** → watch it unlock "已報價" → 標記成交.
 
 ## Verification (2026-08-18)
 
